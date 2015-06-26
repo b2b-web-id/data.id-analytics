@@ -1,2 +1,23 @@
 # data.id-analytics
-Data.ID
+
+===================
+
+Apa kata Data.ID?
+
+-----------------
+
+Ada apa aja sih di Indonesia? Pernahkah Anda terpikir mengenai pertanyaan ini? Mencoba menjawab pertanyaan itu, kami akan mengekplorasi data Indonesia melalui Data.ID (data.go.id).
+
+-----------------
+
+data.go.id adalah portal resmi data terbuka Indonesia yang terdiri atas dan tidak terbatas hanya Kementerian, lembaga pemerintahan, pemerintahan daerah, dan semua instansi lain yang terkait yang menghasilkan data yang berhubungan dengan Indonesia.
+
+Portal Data Indonesia diinisiasi oleh Unit Kerja Presiden Bidang Pengawasan Pengendalian Pembangunan (UKP-PPP) sebagai salah satu komitmen pemerintah dalam Open Government Partnership.
+
+Kami menyediakan data dalam format yang mudah dicari, diakses serta digunakan dengan harapan pengguna situs dapat memanfaatkan data yang tersedia di sini seluas-luasnya dan seinovatif mungkin demi terwujudnya Indonesia yang lebih baik.
+
+Seluruh kumpulan data yang ada di dalam data.go.id dikategorikan sebagai domain publik sehingga tidak diperkenankan mengandung informasi yang mengandung rahasia negara, rahasia pribadi atau hal-hal lainnya yang diatur dalam Undang-Undang Nomor 14 Tahun 2008 tentang Keterbukaan Informasi Publik.
+
+-----------------
+
+Platform analisis yang digunakan adalah R diatas sistem operasi Linux 64bit.
