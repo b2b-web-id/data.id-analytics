@@ -8,7 +8,7 @@ kontrak_karya <- read.csv(
 summary(kontrak_karya)
 
 # Total wilayah
-sum(crime$luas_wilayah)
+sum(kontrak_karya$luas_wilayah)
 
 # Pemegang kontrak karya dengan luas wilayah terkecil
 subset(kontrak_karya,luas_wilayah==min(kontrak_karya$luas_wilayah))
