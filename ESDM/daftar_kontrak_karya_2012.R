@@ -4,6 +4,10 @@ kontrak_karya <- read.csv(
   header=TRUE,
   sep=",")
 
+##################################
+# Observasi Data
+##################################
+
 # Ringkasan Data
 summary(kontrak_karya)
 
@@ -15,3 +19,28 @@ subset(kontrak_karya,luas_wilayah==min(kontrak_karya$luas_wilayah))
 
 # Pemegang kontrak karya dengan luas wilayah terbesar
 subset(kontrak_karya,luas_wilayah==max(kontrak_karya$luas_wilayah))
+
+##################################
+# Visualisasi Data
+##################################
+
+# Pustaka
+library(leaflet)
+library(ggmap)
+
+# Ambil Data Geospasial atas Nama Perusahaan
+geocodes <- geocode(as.character(kontrak_karya$nama_perusahaan))
+
+# Gabungkan Data
+data <- data.frame(kontrak_karya,geocodes)
+
+# Bersihkan Data
+clean <- na.omit(data)
+clean$latitude <- jitter(clean$latitude)
+clean$longitude <- jitter(clean$longitude)
+
+# Buat Grafik (Peta)
+m <- leaflet(data = clean) %>%
+  addTiles() %>%
+  addMarkers(~lon, ~lat, popup=~as.character(nama_perusahaan))
+m
