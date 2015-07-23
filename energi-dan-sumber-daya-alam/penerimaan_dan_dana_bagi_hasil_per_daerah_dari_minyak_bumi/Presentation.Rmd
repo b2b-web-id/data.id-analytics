@@ -1,0 +1,132 @@
+---
+title: "Penerimaan Sumber Daya Alam dan Dana Bagi Hasil Minyak"
+author: "B2B.Web.ID"
+date: "23 Juli 2015"
+output: slidy_presentation
+---
+
+```{r setup, echo=FALSE}
+library(leaflet)
+bagi_hasil <- read.csv(
+  "http://data.go.id/dataset/64bda63f-c2ee-4128-8b63-7047c950f6b3/resource/476513d0-f4f8-4a3a-a020-773dcf843c1f/download/processeddanabagihasilminyakbumiperkkkskabupaten20102011.csv",
+  header=TRUE,
+  sep=",")
+```
+
+## Pengantar
+
+Dataset yang digunakan adalah yang bersumber dari Data.ID^[0]^.
+
+Dataset ini berisi data mengenai penerimaan SDA dari minyak bumi per kontraktor per kabupaten/kota serta nilai dari Dana Bagi Hasil yang diberikan.
+
+Data ini disediakan oleh EITI^[1]^.
+
+      
+
+^[0]^ [Dataset Penerimaan SDA dan DBH Daerah dari Minyak Bumi](http://data.go.id/dataset/penerimaan-dan-dana-bagi-hasil-per-daerah-dari-minyak-bumi)
+
+^[1]^ [EITI](http://eiti.ekon.go.id)
+
+
+## Deskripsi Data
+
+1. tahun: Tahun
+2. nama_provinsi: Nama Provinsi
+3. kode_kabkota: Kode Kabupaten Kota
+4. nama_kabkota: Nama Kabupaten Kota
+5. kkks: Nama KKKS (Kontraktor Kontrak Kerja Sama)
+6. jenis_minyak: Jenis Minyak
+7. penerimaan_sda: Nilai Penerimaan SDA Minyak per KKKS per Daerah (dalam Rupiah)
+8. dbh_prov: Nilai Bagian Dana Bagi Hasil untuk Provinsi (dalam Rupiah)
+9. dbh_penghasil: Nilai Bagian Dana Bagi Hasil untuk Penghasil (dalam Rupiah)
+10. dbh_pemerataan: Nilai Bagian Dana Bagi Hasil untuk Pemerataan Daerah (dalam Rupiah)
+11. latitude: Titik Lintang dari Kabupaten/Kota tersebut
+12. longitude: Titik Bujur dari Kabupaten/Kota tersebut
+
+
+## Data
+
+```{r}
+str(bagi_hasil)
+```
+
+
+## Ubah Tipe Data
+
+```{r}
+cols <- c("tahun","kode_kabkota")
+bagi_hasil[,cols] <- data.frame(apply(bagi_hasil[cols], 2, as.factor))
+str(bagi_hasil)
+```
+
+
+## Summary Data
+
+```{r}
+summary(bagi_hasil)
+```
+
+
+## Hapus Data dengan NA
+
+```{r}
+clean <- na.omit(bagi_hasil)
+summary(clean)
+```
+
+## Sebaran Data Tahun 2010
+
+```{r, echo=FALSE}
+c2010 <- subset(clean,tahun=="2010")
+c2010$color <- ifelse(c2010$penerimaan_sda > 1000000000000,
+                      "red","green")
+c2010$popup <- paste0(
+	"<strong>", c2010$nama_provinsi,
+	", ", c2010$nama_kabkota,
+	"</strong><br>", c2010$kkks,
+	", ", c2010$jenis_minyak,
+	"<br>Penerimaan SDA 2010 : ", format(c2010$penerimaan_sda,
+		scientific=FALSE, format="d", big.mark=".", decimal.mark=","),
+        "<br>DBH Provinsi 2010 : ", format(c2010$penerimaan_sda,
+                scientific=FALSE, format="d", big.mark=".", decimal.mark=","),
+        "<br>DBH Penghasil 2010 : ", format(c2010$penerimaan_sda,
+                scientific=FALSE, format="d", big.mark=".", decimal.mark=","),
+        "<br>DBH Pemerataan 2010 : ", format(c2010$penerimaan_sda,
+                scientific=FALSE, format="d", big.mark=".", decimal.mark=","))
+leaflet(data=c2010) %>% addTiles() %>% addCircleMarkers(
+	~longitude, ~latitude,
+	color=~color,
+	stroke=FALSE,
+	fillOpacity=0.5,
+	popup=~popup)
+```
+
+## Sebaran Data Tahun 2011
+
+```{r, echo=FALSE}
+c2011 <- subset(clean,tahun=="2011")
+c2011$color <- ifelse(c2011$penerimaan_sda > 1000000000000,
+                      "red","green")
+c2011$popup <- paste0(
+	"<strong>", c2011$nama_provinsi,
+	", ", c2011$nama_kabkota,
+	"</strong><br>", c2011$kkks,
+	", ", c2011$jenis_minyak,
+	"<br>Penerimaan SDA 2011 : ", format(c2011$penerimaan_sda,
+		scientific=FALSE, format="d", big.mark=".", decimal.mark=","),
+        "<br>DBH Provinsi 2011 : ", format(c2011$penerimaan_sda,
+                scientific=FALSE, format="d", big.mark=".", decimal.mark=","),
+        "<br>DBH Penghasil 2011 : ", format(c2011$penerimaan_sda,
+                scientific=FALSE, format="d", big.mark=".", decimal.mark=","),
+        "<br>DBH Pemerataan 2011 : ", format(c2011$penerimaan_sda,
+                scientific=FALSE, format="d", big.mark=".", decimal.mark=","))
+leaflet(data=c2011) %>% addTiles() %>% addCircleMarkers(
+	~longitude, ~latitude,
+	color=~color,
+	stroke=FALSE,
+	fillOpacity=0.5,
+	popup=~popup)
+```
+
+
+## Terima Kasih
