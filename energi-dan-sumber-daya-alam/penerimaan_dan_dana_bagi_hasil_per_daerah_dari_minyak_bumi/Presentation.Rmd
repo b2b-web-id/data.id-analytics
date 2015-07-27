@@ -1,5 +1,5 @@
 ---
-title: "Penerimaan Sumber Daya Alam dan Dana Bagi Hasil Minyak"
+title: "Penerimaan Sumber Daya Alam dan Dana Bagi Hasil Minyak Bumi per KKKS per Kabupaten Tahun 2010 dan 2011"
 author: "B2B.Web.ID"
 date: "23 Juli 2015"
 output: slidy_presentation
@@ -87,11 +87,11 @@ c2010$popup <- paste0(
 	", ", c2010$jenis_minyak,
 	"<br>Penerimaan SDA 2010 : ", format(c2010$penerimaan_sda,
 		scientific=FALSE, format="d", big.mark=".", decimal.mark=","),
-        "<br>DBH Provinsi 2010 : ", format(c2010$penerimaan_sda,
+        "<br>DBH Provinsi 2010 : ", format(c2010$dbh_prov,
                 scientific=FALSE, format="d", big.mark=".", decimal.mark=","),
-        "<br>DBH Penghasil 2010 : ", format(c2010$penerimaan_sda,
+        "<br>DBH Penghasil 2010 : ", format(c2010$dbh_penghasil,
                 scientific=FALSE, format="d", big.mark=".", decimal.mark=","),
-        "<br>DBH Pemerataan 2010 : ", format(c2010$penerimaan_sda,
+        "<br>DBH Pemerataan 2010 : ", format(c2010$dbh_pemerataan,
                 scientific=FALSE, format="d", big.mark=".", decimal.mark=","))
 leaflet(data=c2010) %>% addTiles() %>% addCircleMarkers(
 	~longitude, ~latitude,
@@ -114,11 +114,11 @@ c2011$popup <- paste0(
 	", ", c2011$jenis_minyak,
 	"<br>Penerimaan SDA 2011 : ", format(c2011$penerimaan_sda,
 		scientific=FALSE, format="d", big.mark=".", decimal.mark=","),
-        "<br>DBH Provinsi 2011 : ", format(c2011$penerimaan_sda,
+        "<br>DBH Provinsi 2011 : ", format(c2011$dbh_prov,
                 scientific=FALSE, format="d", big.mark=".", decimal.mark=","),
-        "<br>DBH Penghasil 2011 : ", format(c2011$penerimaan_sda,
+        "<br>DBH Penghasil 2011 : ", format(c2011$dbh_penghasil,
                 scientific=FALSE, format="d", big.mark=".", decimal.mark=","),
-        "<br>DBH Pemerataan 2011 : ", format(c2011$penerimaan_sda,
+        "<br>DBH Pemerataan 2011 : ", format(c2011$dbh_pemerataan,
                 scientific=FALSE, format="d", big.mark=".", decimal.mark=","))
 leaflet(data=c2011) %>% addTiles() %>% addCircleMarkers(
 	~longitude, ~latitude,
